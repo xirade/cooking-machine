@@ -2,10 +2,13 @@ import { createContext, useReducer } from "react";
 
 export const ThemeContext = createContext();
 
-const themeReducer = (state, action) => {
-  switch (action.type) {
+const themeReducer = (state, { type, payload }) => {
+  switch (type) {
     case "CHANGE_COLOR":
-      return { ...state, color: action.payload };
+      return { ...state, color: payload };
+
+    case "CHANGE_MODE":
+      return { ...state, mode: payload };
     default:
       return state;
   }
@@ -16,6 +19,7 @@ export function ThemeProvider({ children }) {
 
   const [state, dispatch] = useReducer(themeReducer, {
     color: "#F7AD19",
+    mode: "dark",
   });
 
   const changeColor = (color) => {
@@ -25,8 +29,12 @@ export function ThemeProvider({ children }) {
     });
   };
 
+  const changeMode = (mode) => {
+    dispatch({ type: "CHANGE_MODE", payload: mode });
+  };
+
   return (
-    <ThemeContext.Provider value={{ ...state, changeColor }}>
+    <ThemeContext.Provider value={{ ...state, changeColor, changeMode }}>
       {children}
     </ThemeContext.Provider>
   );

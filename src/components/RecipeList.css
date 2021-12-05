@@ -50,3 +50,14 @@
   color: #e2e2e2;
   background: #686666;
 }
+
+/* dark mode */
+.recipe-list .card.dark {
+  background: #555;
+}
+
+.recipe-list .card.dark p,
+.recipe-list .card.dark h3,
+.recipe-list .card.dark div {
+  color: #e4e4e4;
+}

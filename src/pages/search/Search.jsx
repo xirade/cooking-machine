@@ -7,6 +7,7 @@ import "./Search.css";
 
 // components
 import RecipeList from "../../components/RecipeList";
+import Loader from "../../components/Loader";
 
 export default function Search() {
   const queryString = useLocation().search;
@@ -20,7 +21,7 @@ export default function Search() {
     <div>
       <h2 className="page-title">
         Recipes including "{query}"{error && <p className="error">{error}</p>}
-        {isPending && <p className="loading">Loading...</p>}
+        {isPending && <Loader />}
         {data && <RecipeList recipes={data} />}
       </h2>
     </div>
